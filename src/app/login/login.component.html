@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12 col-md-3 col-md-offset-4">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" [(ngModel)]="inputUser">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="text" class="form-control" [(ngModel)]="inputPass">
+    </div>
+    <app-validate *ngIf="status" [username]="inputUser" [password]="inputPass" (status)="onCheck($event)"></app-validate>
+    <p *ngIf="err" style="color: red">Username or Password is incorrect!</p>
+    <button class="btn btn-primary" (click)="status=!status">Login</button>
+  </div>
+</div>
