@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {LoginService} from './login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,21 +8,31 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() user = new EventEmitter <{username: string, password: string, ref: Router}>();
-  inputUser = '';
-  inputPass = '';
-  status = false;
-  err = false;
-  constructor(private router: Router, private route: ActivatedRoute) { }
-  onCheck(event: boolean) {
-    if (event === true) {
-      this.router.navigate(['mainPage']).then(() => {
-        this.user.emit({username: this.inputUser, password: this.inputPass, ref: this.router});
-      });
-    }
-    setTimeout(() => {this.status = false; this.err = event === true ? false : true; }, 1000);
+  username = '';
+  password = '';
+  @ViewChild('alert', {static: true}) alert: ElementRef;
+  constructor(private loginService: LoginService, private router: Router) {
+    this.loginService.checkedUser.subscribe(
+      ({user, allow}) => {
+        if (allow === true) {
+          this.loginService.username = user;
+          this.router.navigate(['mainPage']);
+        } else {
+          console.log(allow);
+          this.alert.nativeElement.textContent = 'Wrong Username or Password!';
+        }
+      }
+    );
   }
+
   ngOnInit() {
   }
 
+  onLogin() {
+    if (this.username === '' || this.password === '') {
+      this.alert.nativeElement.textContent = 'Username and Password is required!';
+    } else {
+      this.loginService.checkUser.emit({username: this.username, password: this.password});
+    }
+  }
 }

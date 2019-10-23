@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {LoginService} from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,19 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  url;
-  title = 'Login-Assignment';
-  username = '';
-  onLogin(user: {username: string, password: string, ref: Router}) {
-    console.log(user.username);
-    console.log(user.ref.url);
-    this.url = user.ref.url;
-    this.username = user.username;
+  title = 'Template';
+  constructor(private loginService: LoginService) {
+    this.loginService.checkUser.subscribe(
+      ({username, password}) => this.onCheck(username, password)
+    );
   }
+  onCheck(username: string, password: string) {
+    console.log(username)
+    if (username === 'Hoang' && password === '123') {
+      this.loginService.checkedUser.emit({user: username, allow: true});
+    } else {
+      this.loginService.checkedUser.emit({user: username, allow: false});
+    }
+  }
+
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Login-Assignment": {
+    "Template": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Login-Assignment",
+            "outputPath": "dist/Template",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Login-Assignment:build"
+            "browserTarget": "Template:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Login-Assignment:build:production"
+              "browserTarget": "Template:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Login-Assignment:build"
+            "browserTarget": "Template:build"
           }
         },
         "test": {
@@ -112,15 +112,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Login-Assignment:serve"
+            "devServerTarget": "Template:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Login-Assignment:serve:production"
+              "devServerTarget": "Template:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "Login-Assignment"
+  "defaultProject": "Template"
 }
