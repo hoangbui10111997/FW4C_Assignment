@@ -1,3 +1,9 @@
+# Use
+
+Install Bootstrap 3 with 'npm install --save bootstrap@3'
+Username: Hoang
+Password: 123
+
 # Template
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
