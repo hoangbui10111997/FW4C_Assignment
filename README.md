@@ -1,8 +1,8 @@
 # Use
 
 Install Bootstrap 3 with 'npm install --save bootstrap@3'
-Username: Hoang
-Password: 123
+/nUsername: Hoang
+\nPassword: 123
 
 # Template
 
