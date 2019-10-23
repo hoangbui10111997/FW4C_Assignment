@@ -1,26 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {routingComponents, AppRoutingModules} from './app-routing.modules'
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import {RouterModule, Routes} from '@angular/router';
+import { MainComponent } from './main/main.component';
+import {LoginService} from './login/login.service';
 import {FormsModule} from '@angular/forms';
-import { ValidateComponent } from './validate/validate.component';
-import {RouterModule} from '@angular/router';
-// import { MainpageComponent } from './mainpage/mainpage.component';
+
+const appRouters: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'mainPage', component: MainComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ValidateComponent,
-    routingComponents
+    MainComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModules
+    RouterModule.forRoot(appRouters)
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
