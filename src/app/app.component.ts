@@ -14,7 +14,6 @@ export class AppComponent {
     );
   }
   onCheck(username: string, password: string) {
-    console.log(username)
     if (username === 'Hoang' && password === '123') {
       this.loginService.checkedUser.emit({user: username, allow: true});
     } else {
